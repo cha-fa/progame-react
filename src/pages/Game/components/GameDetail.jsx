@@ -10,7 +10,7 @@ const GameDetail = ({ game }) => {
               <h1 id="title">{game.name}</h1>
             </div>
             <div className="col-4 d-flex align-items-center">
-              <p id="rating">{game.rating}</p>
+              <p id="rating">{game.rating}/5</p>
             </div>
           </div>
           <div className="row">
@@ -35,8 +35,8 @@ const GameDetail = ({ game }) => {
             <div className="col-xs-6 col-md-3">
               <h5>Platforms:</h5>
               {game.platforms.map((plat) => (
-                <p id="platforms" key={plat.id}>
-                  {plat.name}
+                <p id="platforms" key={plat.platform.id}>
+                  {plat.platform.name}
                 </p>
               ))}
             </div>
