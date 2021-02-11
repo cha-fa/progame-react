@@ -12,6 +12,7 @@ const SimilarGames = ({ gameSlug }) => {
 
   useEffect(() => {
     fetchSimilarGames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameSlug]);
 
   return (

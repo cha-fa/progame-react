@@ -15,6 +15,7 @@ const YouTube = ({ gameSlug }) => {
 
   useEffect(() => {
     fetchYoutube();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameSlug]);
 
   return (

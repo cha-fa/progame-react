@@ -1,0 +1,50 @@
+$color-black: rgb(25, 25, 25);
+$color-red: rgb(210, 10, 50);
+$color-white: rgb(255, 255, 255);
+
+$size-10: 10px;
+$size-15: 15px;
+$size-20: 20px;
+$size-22: 22px;
+$size-30: 30px;
+$size-40: 40px;
+$size-50: 50px;
+
+@font-face {
+  font-family: "Avenir Next Lt Pro";
+  src: url("./fonts/avenir-next-lt-pro-demi.otf");
+}
+
+@font-face {
+  font-family: "Metropolis Semi Bold";
+  src: url("./fonts/metropolis-semibold.otf");
+}
+
+@font-face {
+  font-family: "Metropolis Regular";
+  src: url("./fonts/metropolis-regular.otf");
+}
+
+@mixin white-title {
+  font-family: "Avenir Next Lt Pro";
+  color: $color-white;
+  font-weight: bold;
+}
+
+@mixin white-text {
+  font-family: "Metropolis Semi Bold";
+  color: $color-white;
+}
+
+@mixin red-btn {
+  border: none;
+  background-color: $color-red;
+  font-family: "Metropolis Regular";
+  color: $color-white;
+}
+
+@mixin mobile {
+  @media (max-width: 599px) {
+    @content;
+  }
+}

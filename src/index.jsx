@@ -2,6 +2,8 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.scss";
+
 import { Container } from "react-bootstrap";
 import Home from "pages/Home/Home";
 import Game from "pages/Game/Game";

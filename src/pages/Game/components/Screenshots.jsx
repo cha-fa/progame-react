@@ -15,6 +15,7 @@ const Screenshots = ({ gameSlug }) => {
 
   useEffect(() => {
     fetchScreenshots();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameSlug]);
 
   return (

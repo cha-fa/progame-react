@@ -16,6 +16,7 @@ const SearchResults = ({ searchKeyword }) => {
 
   useEffect(() => {
     fetchResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKeyword]);
 
   console.log(currentGames);

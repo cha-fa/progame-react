@@ -22,6 +22,7 @@ const Game = () => {
 
   useEffect(() => {
     fetchGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameSlug]);
 
   console.log("in game", currentGame);
