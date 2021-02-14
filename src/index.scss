@@ -10,6 +10,7 @@ body {
   @include mobile {
     height: 1em;
   }
+  fill: red !important;
 }
 
 h2 {

@@ -10,8 +10,6 @@ import YouTube from "./components/YouTube";
 const Game = () => {
   const { gameSlug } = useParams();
   const [currentGame, setCurrentGame] = useState();
-  console.log(gameSlug);
-
   const fetchGame = () => {
     fetch(`https://api.rawg.io/api/games/${gameSlug}`)
       .then((response) => response.json())
@@ -25,13 +23,10 @@ const Game = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameSlug]);
 
-  console.log("in game", currentGame);
-
   return (
     <div>
       {currentGame && (
         <div>
-          <h1>On a game page: {currentGame.name}</h1>
           <GameDetail game={currentGame} />
           <Stores stores={currentGame.stores} />
           <Trailer clip={currentGame.clip} />

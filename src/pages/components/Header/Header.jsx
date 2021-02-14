@@ -19,7 +19,7 @@ const Header = ({ handleSearchInput }) => {
           <h2>The Hyper Progame</h2>
         </Link>
         <form data-aos="zoom-in" className="form-inline ">
-          <FaSearch size={35} />
+          <FaSearch size={30} color="white" className="m-3" />
           <input
             ref={inputRef}
             id="userSearch"

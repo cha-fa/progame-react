@@ -1,22 +1,37 @@
 import { useRef, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const Filtering = ({ handleFiltering }) => {
   const [currentPlatforms, setCurrentPlatforms] = useState();
   const sort = useRef();
   const platform = useRef();
+  let history = useHistory();
 
   const handleChange = () => {
     handleFiltering({
       sort: sort.current.value,
       platform: platform.current.value,
     });
+    history.push("/");
+  };
+
+  const handleClick = () => {
+    handleFiltering({
+      sort: "-relevance",
+      platform: "1,2,3,4,5,6,7,8,14",
+    });
+    history.push("/");
   };
 
   const fetchPlatforms = () => {
+    const ids = [9, 10, 11, 12, 13];
     fetch("https://api.rawg.io/api/platforms/lists/parents")
       .then((response) => response.json())
       .then((response) => {
-        setCurrentPlatforms(response.results);
+        const platforms = response.results.filter(
+          (result) => !ids.includes(result.id)
+        );
+        setCurrentPlatforms(platforms);
       });
   };
   useEffect(() => {
@@ -30,6 +45,7 @@ const Filtering = ({ handleFiltering }) => {
         id="filtering"
         name="filtering"
         ref={sort}
+        defaultValue={{ value: "-relevance", label: "Relevance" }}
         onChange={handleChange}
       >
         <option value="-relevance">Relevance</option>
@@ -44,8 +60,9 @@ const Filtering = ({ handleFiltering }) => {
         name="platforms"
         ref={platform}
         onChange={handleChange}
+        defaultValue={{ value: "1,2,3,4,5,6,7,8,14", label: "All" }}
       >
-        <option key={platform.id} value="null">
+        <option key={platform.id} value="1,2,3,4,5,6,7,8,14">
           All
         </option>
         {currentPlatforms &&
@@ -55,6 +72,9 @@ const Filtering = ({ handleFiltering }) => {
             </option>
           ))}
       </select>
+      <button type="button" onClick={handleClick}>
+        CLEAR ALL FILTERS
+      </button>
     </div>
   );
 };

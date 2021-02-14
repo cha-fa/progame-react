@@ -1,4 +1,6 @@
 import React from "react";
+import ReactHtmlParser from "react-html-parser";
+import { Link } from "react-router-dom";
 
 const GameDetail = ({ game }) => {
   return (
@@ -15,7 +17,7 @@ const GameDetail = ({ game }) => {
           </div>
           <div className="row">
             <p data-aos="fade-up" className="col" id="description">
-              {game.description}
+              {ReactHtmlParser(game.description)}
             </p>
           </div>
 
@@ -27,9 +29,14 @@ const GameDetail = ({ game }) => {
             <div className="col-xs-6 col-md-3">
               <h5>Developers:</h5>
               {game.developers.map((dev) => (
-                <p id="developers" key={dev.id}>
-                  {dev.name}
-                </p>
+                <Link
+                  id="developers"
+                  key={dev.id}
+                  className="mt-auto"
+                  to={"/?developers=" + dev.slug}
+                >
+                  <p>{dev.name}</p>
+                </Link>
               ))}
             </div>
             <div className="col-xs-6 col-md-3">
