@@ -1,13 +1,17 @@
-import React from "react";
+import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Header = ({ handleSearchInput }) => {
+  let history = useHistory();
+  const inputRef = useRef();
+
   const handleClick = (event) => {
-    console.log("event lauched");
     event.preventDefault();
-    handleSearchInput(document.getElementById("userSearch").value);
+    history.push("/");
+    handleSearchInput(inputRef.current.value);
   };
+
   return (
     <header>
       <nav className="mb-5 d-flex justify-content-between align-items-center d-flex row">
@@ -15,8 +19,9 @@ const Header = ({ handleSearchInput }) => {
           <h2>The Hyper Progame</h2>
         </Link>
         <form data-aos="zoom-in" className="form-inline ">
-          <FaSearch />
+          <FaSearch size={35} />
           <input
+            ref={inputRef}
             id="userSearch"
             type="search"
             placeholder="Find a game"

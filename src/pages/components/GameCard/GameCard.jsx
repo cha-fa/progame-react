@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PlatformLogo from "../PlatformLogo";
 
 const GameCard = ({ game }) => (
   <div className="col-xs-12 col-md-4 w-75 mb-5 ">
@@ -23,7 +24,7 @@ const GameCard = ({ game }) => (
             {game.name}
           </Link>
         </h4>
-        Platforms :{game.platforms.map((plat) => plat.platform.name)}
+        Platforms : {game.parent_platforms.map((plat) => plat.platform.name)}
       </div>
     </div>
   </div>

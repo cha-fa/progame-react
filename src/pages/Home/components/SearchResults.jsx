@@ -1,12 +1,21 @@
 import GameCard from "pages/components/GameCard/GameCard";
 import { useState, useEffect } from "react";
 
-const SearchResults = ({ searchKeyword }) => {
+const SearchResults = ({ searchKeyword, filter }) => {
   const [currentGames, setCurrentGames] = useState();
   const [nextURL, setNextURL] = useState();
 
+  console.log("filter iiis", filter);
+
   const fetchResults = () => {
-    fetch(`https://api.rawg.io/api/games?page_size=9&search=${searchKeyword}`)
+    let url;
+    if (searchKeyword) {
+      url = `https://api.rawg.io/api/games?page_size=9&search=${searchKeyword}`;
+    } else {
+      url = `https://rawg.io/api/games/lists/main?discover=true&ordering=${filter.sort}&page_size=9&page=1&parent_platforms=${filter.platform}`;
+    }
+    console.log("fetching URL", url);
+    fetch(url)
       .then((response) => response.json())
       .then((response) => {
         setCurrentGames(response.results);
@@ -17,7 +26,7 @@ const SearchResults = ({ searchKeyword }) => {
   useEffect(() => {
     fetchResults();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchKeyword]);
+  }, [searchKeyword, filter]);
 
   console.log(currentGames);
   return (

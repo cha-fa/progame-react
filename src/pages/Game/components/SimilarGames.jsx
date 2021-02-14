@@ -21,7 +21,9 @@ const SimilarGames = ({ gameSlug }) => {
         <h2>SIMILAR GAMES</h2>
         <div data-aos="fade-up" className="row" id="similar-games">
           {currentSimilarGames &&
-            currentSimilarGames.map((game) => <GameCard game={game} />)}
+            currentSimilarGames.map((game) => (
+              <GameCard key={game.id} game={game} />
+            ))}
         </div>
       </div>
     </div>
