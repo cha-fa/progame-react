@@ -6,7 +6,7 @@ const SearchResults = ({ searchKeyword, filter, query }) => {
   const [nextURL, setNextURL] = useState();
   const API_URL = process.env.REACT_APP_API_URL;
 
-  const fetchResults = () => {
+  const fetchResults = (next) => {
     const platforms = filter.platform ? filter.platform : "1,2,3,4,5,6,7,8,14";
     let url;
     if (searchKeyword) {
@@ -16,11 +16,15 @@ const SearchResults = ({ searchKeyword, filter, query }) => {
     } else {
       url = `${API_URL}/games/lists/main?discover=true&ordering=${filter.sort}&page_size=9&page=1&parent_platforms=${filter.platform}`;
     }
-    console.log("fetching URL", url);
+    url = next ? next : url;
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
-        setCurrentGames(response.results);
+        if (next && currentGames) {
+          setCurrentGames((prevGames) => prevGames.concat(response.results));
+        } else {
+          setCurrentGames(response.results);
+        }
         setNextURL(response.next);
       });
   };
@@ -30,10 +34,21 @@ const SearchResults = ({ searchKeyword, filter, query }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchKeyword, filter]);
 
+  console.log("CURRENT GAMES", currentGames);
+
   return (
     <div className="row">
       {currentGames &&
         currentGames.map((game) => <GameCard key={game.id} game={game} />)}
+      {nextURL && (
+        <button
+          type="button"
+          id="showBtn"
+          onClick={() => fetchResults(nextURL)}
+        >
+          Show more
+        </button>
+      )}
     </div>
   );
 };

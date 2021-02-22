@@ -34,6 +34,7 @@ const GameDetail = ({ game }) => {
               <h5>Developers:</h5>
               {game.developers.map((dev) => (
                 <Link
+                  className="no-style"
                   key={dev.id}
                   to={{
                     pathname: `/`,
@@ -45,7 +46,7 @@ const GameDetail = ({ game }) => {
                     },
                   }}
                 >
-                  <p>{dev.name}</p>
+                  <p className="a-intern">{dev.name}</p>
                 </Link>
               ))}
             </div>
@@ -54,6 +55,7 @@ const GameDetail = ({ game }) => {
 
               {game.platforms.map((plat) => (
                 <Link
+                  className="no-style"
                   key={plat.id}
                   to={{
                     pathname: `/`,
@@ -65,7 +67,7 @@ const GameDetail = ({ game }) => {
                     },
                   }}
                 >
-                  <p>{plat.platform.name}</p>
+                  <p className="a-intern">{plat.platform.name}</p>
                 </Link>
               ))}
             </div>
@@ -73,6 +75,7 @@ const GameDetail = ({ game }) => {
               <h5>Publishers:</h5>
               {game.publishers.map((pub) => (
                 <Link
+                  className="no-style"
                   key={pub.id}
                   to={{
                     pathname: `/`,
@@ -84,7 +87,7 @@ const GameDetail = ({ game }) => {
                     },
                   }}
                 >
-                  <p>{pub.name}</p>
+                  <p className="a-intern">{pub.name}</p>
                 </Link>
               ))}
             </div>
@@ -95,6 +98,7 @@ const GameDetail = ({ game }) => {
               <h5>Genres:</h5>
               {game.genres.map((genre) => (
                 <Link
+                  className="no-style"
                   key={genre.id}
                   to={{
                     pathname: `/`,
@@ -106,7 +110,7 @@ const GameDetail = ({ game }) => {
                     },
                   }}
                 >
-                  <p>{genre.name}</p>
+                  <p className="a-intern">{genre.name}</p>
                 </Link>
               ))}
             </div>
@@ -114,6 +118,7 @@ const GameDetail = ({ game }) => {
               <h5>Tags:</h5>
               {game.tags.slice(0, 10).map((tag) => (
                 <Link
+                  className="no-style"
                   key={tag.id}
                   to={{
                     pathname: `/`,
@@ -125,7 +130,7 @@ const GameDetail = ({ game }) => {
                     },
                   }}
                 >
-                  <p>{tag.name}</p>
+                  <p className="a-intern">{tag.name}</p>
                 </Link>
               ))}
             </div>
