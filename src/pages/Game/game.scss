@@ -39,6 +39,7 @@
     margin-top: 55px;
     @include mobile {
       font-size: $size-15;
+      margin-top: 15px;
     }
   }
 
@@ -79,7 +80,7 @@
     }
   }
 
-  #youtube {
+  .YouTube {
     p {
       color: $color-red;
       @include mobile {
@@ -89,9 +90,26 @@
     img {
       height: 75%;
     }
-    @include mobile {
-      margin-bottom: $size-50;
+
+    #first-video iframe {
+      width: 480px;
+      height: 360px;
+      @include mobile {
+        width: 100%;
+      }
     }
+
+    #other-videos iframe {
+      width: 320px;
+      height: 180px;
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+
+  .Trailer video {
+    width: 100%;
   }
 
   .Screenshots img {

@@ -43,18 +43,18 @@ const Header = ({ handleSearchInput }) => {
           />
           {(ongoingSearch && (
             <MdClear
+              className="SearchSubmit"
               type="button"
               size={30}
               color="white"
-              className="m-3"
               onClick={clearSearch}
             />
           )) || (
             <FaSearch
+              className="SearchSubmit"
               type="submit"
               size={30}
               color="white"
-              className="m-3"
               onClick={handleClick}
             />
           )}

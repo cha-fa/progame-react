@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import GameDetail from "./components/GameDetail";
 import Screenshots from "./components/Screenshots";
 import SimilarGames from "./components/SimilarGames";
@@ -13,19 +13,15 @@ const Game = () => {
   const { gameSlug } = useParams();
   const [currentGame, setCurrentGame] = useState();
   const API_URL = process.env.REACT_APP_API_URL;
+
   const fetchGame = () => {
     fetch(`${API_URL}/games/${gameSlug}`)
       .then((response) => response.json())
       .then((response) => {
         setCurrentGame(response);
+        window.scrollTo(0, 0);
       });
   };
-
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   useEffect(() => {
     fetchGame();

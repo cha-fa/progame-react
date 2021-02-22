@@ -24,6 +24,7 @@ form {
   justify-content: space-between;
   @include mobile {
     width: 100%;
+    margin: 0;
   }
 
   input {
@@ -35,6 +36,13 @@ form {
     outline: none;
     @include mobile {
       width: 50%;
+    }
+  }
+
+  .SearchSubmit {
+    margin: 1em;
+    @include mobile {
+      margin: 0.5em;
     }
   }
 }

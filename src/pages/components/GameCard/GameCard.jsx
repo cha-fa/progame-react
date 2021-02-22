@@ -38,7 +38,7 @@ const GameCard = ({ game }) => {
     }
   };
   return (
-    <div className="col-xs-12 col-md-4 w-75 mb-5 ">
+    <div className="GameCard col-xs-12 col-md-4  ">
       <div data-aos="flip-left" className="game-card">
         <div className="game-top">
           <img

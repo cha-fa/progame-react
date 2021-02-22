@@ -17,8 +17,8 @@ const SimilarGames = ({ gameSlug }) => {
   }, [gameSlug]);
 
   return (
-    <div data-aos="fade-up" className="row mt-2">
-      <div className="col mt-5">
+    <div data-aos="fade-up" className="row">
+      <div className="col">
         <h2>SIMILAR GAMES</h2>
         <div data-aos="fade-up" className="row" id="similar-games">
           {currentSimilarGames &&

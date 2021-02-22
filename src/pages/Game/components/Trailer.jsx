@@ -1,7 +1,7 @@
 import React from "react";
 
 const Trailer = ({ clip }) => (
-  <div data-aos="fade-up" className="row">
+  <div data-aos="fade-up" className="Trailer row">
     {clip && clip.clips.full && (
       <div className="col">
         <h2>TRAILER</h2>

@@ -21,13 +21,13 @@ const YouTube = ({ gameSlug }) => {
   }, [gameSlug]);
 
   return (
-    <div data-aos="fade-up" className="row">
+    <div data-aos="fade-up" className="YouTube row">
       {currentYoutube && (
         <div className="col mb-5">
           <h2>YOUTUBE</h2>
           <div id="youtube">
             <div data-aos="fade-up" id="first-video" className="row">
-              <div className="col-6">
+              <div className="col-xs-12 col-md-6">
                 <a
                   className="no-style"
                   target="_blank"
@@ -39,8 +39,6 @@ const YouTube = ({ gameSlug }) => {
                 >
                   <iframe
                     title="{youtube.id}"
-                    width="480px"
-                    height="360px"
                     id="ytplayer"
                     type="text/html"
                     src={
@@ -51,7 +49,7 @@ const YouTube = ({ gameSlug }) => {
                   ></iframe>
                 </a>
               </div>
-              <div className="col-6">
+              <div className="col-xs-12 col-md-6">
                 <a
                   className="no-style"
                   target="_blank"
@@ -74,7 +72,7 @@ const YouTube = ({ gameSlug }) => {
 
             <div data-aos="fade-up" id="other-videos" className="row">
               {currentYoutube.slice(1).map((youtube) => (
-                <div className="col-4" key={youtube.id}>
+                <div className="col-xs-12 col-md-4" key={youtube.id}>
                   <a
                     className="no-style"
                     target="_blank"
