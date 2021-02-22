@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import DayJS from "react-dayjs";
 
 const YouTube = ({ gameSlug }) => {
   const [currentYoutube, setCurrentYoutube] = useState();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const fetchYoutube = () => {
-    fetch(`https://api.rawg.io/api/games/${gameSlug}/youtube?page_size=4`)
+    fetch(`${API_URL}/games/${gameSlug}/youtube?page_size=4`)
       .then((response) => response.json())
       .then((response) => {
         response.results.length > 1
@@ -45,7 +47,7 @@ const YouTube = ({ gameSlug }) => {
                       "https://www.youtube.com/embed/" +
                       currentYoutube[0].external_id
                     }
-                    frameborder="0"
+                    frameBorder="0"
                   ></iframe>
                 </a>
               </div>
@@ -62,7 +64,9 @@ const YouTube = ({ gameSlug }) => {
                   <h3 className="hover-red">{currentYoutube[0].name}</h3>
                   <p>
                     {currentYoutube[0].channel_title} -{" "}
-                    {currentYoutube[0].created}
+                    <DayJS format="DD-MM-YYYY">
+                      {currentYoutube[0].created}
+                    </DayJS>
                   </p>
                 </a>
               </div>
@@ -86,12 +90,13 @@ const YouTube = ({ gameSlug }) => {
                       src={
                         "https://www.youtube.com/embed/" + youtube.external_id
                       }
-                      frameborder="0"
+                      frameBorder="0"
                     ></iframe>
 
                     <h3 className="hover-red">{youtube.name}</h3>
                     <p>
-                      {youtube.channel_title} - {youtube.created}
+                      {youtube.channel_title} -{" "}
+                      <DayJS format="DD-MM-YYYY">{youtube.created}</DayJS>
                     </p>
                   </a>
                 </div>

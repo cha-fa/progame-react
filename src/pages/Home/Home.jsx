@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import Introduction from "pages/Home/components/Introduction";
 import SearchResults from "pages/Home/components/SearchResults";
 import Filtering from "./components/Filtering";
 
 const Home = ({ searchKeyword }) => {
-  const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-  };
-  let query = useQuery();
-
+  const location = useLocation();
   const [currentFilter, setCurrentFilter] = useState({ sort: "-relevance" });
 
   const handleFiltering = (filter) => {
@@ -18,12 +13,11 @@ const Home = ({ searchKeyword }) => {
 
   return (
     <div>
-      <Introduction />
-      <Filtering handleFiltering={handleFiltering} />
+      <Filtering handleFiltering={handleFiltering} query={location.state} />
       <SearchResults
         searchKeyword={searchKeyword}
         filter={currentFilter}
-        query={{ developers: query.get("developers") }}
+        query={location.search}
       />
     </div>
   );

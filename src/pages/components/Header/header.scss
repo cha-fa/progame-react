@@ -1,0 +1,40 @@
+@import "variables";
+
+h1 {
+  color: $color-red;
+  font-size: 70px;
+  margin-top: $size-50;
+  font-family: "Avenir Next Lt Pro";
+  font-weight: bold;
+  @include mobile {
+    font-size: $size-30;
+  }
+}
+
+form {
+  width: 40%;
+  height: 25%;
+  border-radius: 150px;
+  border: solid;
+  border-width: 2px;
+  border-color: $color-white;
+  margin: $size-10;
+  padding: 5px 30px 5px 30px;
+  display: flex;
+  justify-content: space-between;
+  @include mobile {
+    width: 100%;
+  }
+
+  input {
+    border: none;
+    background-color: transparent;
+    padding: 10;
+    color: $color-white;
+    width: 75%;
+    outline: none;
+    @include mobile {
+      width: 50%;
+    }
+  }
+}

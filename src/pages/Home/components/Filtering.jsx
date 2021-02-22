@@ -1,11 +1,15 @@
 import { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import "./filtering.scss";
 
-const Filtering = ({ handleFiltering }) => {
+const Filtering = ({ handleFiltering, query }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [currentPlatforms, setCurrentPlatforms] = useState();
   const sort = useRef();
   const platform = useRef();
-  let history = useHistory();
+  const defaultSort = "-relevance";
+  const defaultPlatform = "1,2,3,4,5,6,7,8,14";
+  const history = useHistory();
 
   const handleChange = () => {
     handleFiltering({
@@ -16,16 +20,18 @@ const Filtering = ({ handleFiltering }) => {
   };
 
   const handleClick = () => {
+    sort.current.value = defaultSort;
+    platform.current.value = defaultPlatform;
     handleFiltering({
-      sort: "-relevance",
-      platform: "1,2,3,4,5,6,7,8,14",
+      sort: defaultSort,
+      platform: defaultPlatform,
     });
     history.push("/");
   };
 
   const fetchPlatforms = () => {
     const ids = [9, 10, 11, 12, 13];
-    fetch("https://api.rawg.io/api/platforms/lists/parents")
+    fetch(`${API_URL}/platforms/lists/parents`)
       .then((response) => response.json())
       .then((response) => {
         const platforms = response.results.filter(
@@ -41,14 +47,14 @@ const Filtering = ({ handleFiltering }) => {
 
   return (
     <div className="Filtering">
+      <h2 className="mb-5">Discover your next favorite game!</h2>
       <select
-        id="filtering"
         name="filtering"
         ref={sort}
-        defaultValue={{ value: "-relevance", label: "Relevance" }}
+        defaultValue={{ value: defaultSort, label: "Relevance" }}
         onChange={handleChange}
       >
-        <option value="-relevance">Relevance</option>
+        <option value={defaultSort}>Relevance</option>
         <option value="-created">Date added</option>
         <option value="name">Name</option>
         <option value="-added">Popularity</option>
@@ -60,11 +66,9 @@ const Filtering = ({ handleFiltering }) => {
         name="platforms"
         ref={platform}
         onChange={handleChange}
-        defaultValue={{ value: "1,2,3,4,5,6,7,8,14", label: "All" }}
+        defaultValue={{ value: defaultPlatform, label: "All" }}
       >
-        <option key={platform.id} value="1,2,3,4,5,6,7,8,14">
-          All
-        </option>
+        <option value={defaultPlatform}>All</option>
         {currentPlatforms &&
           currentPlatforms.map((platform) => (
             <option key={platform.id} value={platform.id}>
@@ -72,9 +76,13 @@ const Filtering = ({ handleFiltering }) => {
             </option>
           ))}
       </select>
-      <button type="button" onClick={handleClick}>
-        CLEAR ALL FILTERS
-      </button>
+
+      {((sort.current && sort.current.value !== defaultSort) ||
+        query ||
+        (platform.current && platform.current.value !== defaultPlatform)) && (
+        <p onClick={handleClick}>Clear filters</p>
+      )}
+      <h6>{query && `Filtering by ${query.type}: ${query.name}`}</h6>
     </div>
   );
 };

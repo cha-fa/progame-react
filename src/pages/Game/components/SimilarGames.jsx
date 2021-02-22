@@ -3,9 +3,10 @@ import GameCard from "pages/components/GameCard/GameCard";
 
 const SimilarGames = ({ gameSlug }) => {
   const [currentSimilarGames, setCurrentSimilarGames] = useState();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const fetchSimilarGames = () => {
-    fetch(`https://api.rawg.io/api/games/${gameSlug}/suggested?page_size=6`)
+    fetch(`${API_URL}/games/${gameSlug}/suggested?page_size=6`)
       .then((response) => response.json())
       .then((response) => setCurrentSimilarGames(response.results));
   };

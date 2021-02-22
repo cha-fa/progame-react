@@ -4,30 +4,17 @@ import { useState, useEffect } from "react";
 const SearchResults = ({ searchKeyword, filter, query }) => {
   const [currentGames, setCurrentGames] = useState();
   const [nextURL, setNextURL] = useState();
+  const API_URL = process.env.REACT_APP_API_URL;
 
-  console.log(
-    "DEV IN SEARCH RESULT",
-    Object.values(query),
-    Object.values(query).filter((v) => v).length,
-    Object.values(query).filter((v) => v)
-  );
-
-  const queryIsPresent = () => {
-    return Object.keys(query).filter((el) => query[el]).length > 0
-      ? Object.keys(query).filter((el) => query[el])[0]
-      : false;
-  };
-
-  console.log("fonctio nquery", queryIsPresent());
   const fetchResults = () => {
-    const findQuery = queryIsPresent();
+    const platforms = filter.platform ? filter.platform : "1,2,3,4,5,6,7,8,14";
     let url;
     if (searchKeyword) {
-      url = `https://api.rawg.io/api/games?page_size=9&search=${searchKeyword}&parent_platforms=${filter.platform}&ordering=${filter.sort}`;
-    } else if (findQuery) {
-      url = `https://rawg.io/api/games?${findQuery}=${query[findQuery]}`;
+      url = `${API_URL}/games?page_size=9&search=${searchKeyword}&parent_platforms=${platforms}&ordering=${filter.sort}`;
+    } else if (query) {
+      url = `${API_URL}/games${query}`;
     } else {
-      url = `https://rawg.io/api/games/lists/main?discover=true&ordering=${filter.sort}&page_size=9&page=1&parent_platforms=${filter.platform}`;
+      url = `${API_URL}/games/lists/main?discover=true&ordering=${filter.sort}&page_size=9&page=1&parent_platforms=${filter.platform}`;
     }
     console.log("fetching URL", url);
     fetch(url)

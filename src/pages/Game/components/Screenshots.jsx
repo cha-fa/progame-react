@@ -2,13 +2,9 @@ import { useState, useEffect } from "react";
 
 const Screenshots = ({ gameSlug }) => {
   const [currentScreenshots, setCurrentScreenshots] = useState();
-
+  const API_URL = process.env.REACT_APP_API_URL;
   const fetchScreenshots = () => {
-    console.log(
-      "FETCH URL",
-      `https://api.rawg.io/api/games/${gameSlug}/screenshots?page_size=4`
-    );
-    fetch(`https://api.rawg.io/api/games/${gameSlug}/screenshots?page_size=4`)
+    fetch(`${API_URL}/games/${gameSlug}/screenshots?page_size=4`)
       .then((response) => response.json())
       .then((response) => setCurrentScreenshots(response.results));
   };
@@ -19,7 +15,7 @@ const Screenshots = ({ gameSlug }) => {
   }, [gameSlug]);
 
   return (
-    <div data-aos="fade-up" className="row">
+    <div data-aos="fade-up" className="Screenshots row">
       {currentScreenshots && (
         <div className="col">
           <h2>SCREENSHOTS</h2>
@@ -30,7 +26,6 @@ const Screenshots = ({ gameSlug }) => {
           >
             {currentScreenshots.map((screenshot) => (
               <img
-                className="screen-img p-3 m-4 w-25"
                 src={screenshot.image}
                 alt="Snapshot of the game"
                 key={screenshot.id}

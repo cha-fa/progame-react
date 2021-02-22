@@ -1,0 +1,101 @@
+@import "variables";
+
+.Game {
+  .jumbotron {
+    height: 500px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    @include mobile {
+      height: 200px;
+    }
+  }
+
+  .play-btn {
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+    @include white-text;
+    background-color: $color-red;
+    border: none;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $size-15;
+    @include mobile {
+      width: 50%;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+
+  h3,
+  h5 {
+    @include white-title;
+    font-weight: bold;
+    font-size: $size-22;
+    margin-bottom: 5px;
+    margin-top: 55px;
+    @include mobile {
+      font-size: $size-15;
+    }
+  }
+
+  h5 {
+    color: $color-red !important;
+  }
+
+  #rating {
+    color: $color-red;
+    font-size: 35px;
+    @include mobile {
+      font-size: $size-15;
+    }
+  }
+
+  h2 {
+    color: $color-red;
+    font-size: 40px;
+    margin-top: $size-50;
+    @include mobile {
+      font-size: $size-22;
+    }
+  }
+
+  h1 {
+    color: $color-white;
+    font-size: 60px;
+    margin-top: $size-50;
+    font-family: "Avenir Next Lt Pro";
+    @include mobile {
+      font-size: $size-30;
+    }
+  }
+  a,
+  p {
+    @include mobile {
+      font-size: $size-15;
+    }
+  }
+
+  #youtube {
+    p {
+      color: $color-red;
+      @include mobile {
+        font-size: $size-10;
+      }
+    }
+    img {
+      height: 75%;
+    }
+    @include mobile {
+      margin-bottom: $size-50;
+    }
+  }
+
+  .Screenshots img {
+    width: 50%;
+    padding: 10px;
+  }
+}

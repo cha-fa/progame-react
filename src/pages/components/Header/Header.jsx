@@ -1,40 +1,63 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useHistory } from "react-router-dom";
+import { MdClear } from "react-icons/md";
+import "./header.scss";
 
 const Header = ({ handleSearchInput }) => {
   let history = useHistory();
   const inputRef = useRef();
+  const [ongoingSearch, setOngoingSearch] = useState(false);
 
   const handleClick = (event) => {
     event.preventDefault();
     history.push("/");
     handleSearchInput(inputRef.current.value);
+    setOngoingSearch(true);
+  };
+
+  const clearSearch = () => {
+    history.push("/");
+    handleSearchInput(undefined);
+    inputRef.current.value = "";
+    setOngoingSearch(false);
   };
 
   return (
     <header>
       <nav className="mb-5 d-flex justify-content-between align-items-center d-flex row">
-        <Link className="o-style" to="/">
-          <h2>The Hyper Progame</h2>
+        <Link className="no-style" to="/">
+          <h1>GameFinder</h1>
         </Link>
-        <form data-aos="zoom-in" className="form-inline ">
-          <FaSearch size={30} color="white" className="m-3" />
+
+        <form
+          data-aos="zoom-in"
+          className="form-inline "
+          onSubmit={handleClick}
+        >
           <input
             ref={inputRef}
-            id="userSearch"
             type="search"
             placeholder="Find a game"
             aria-label="Search"
           />
-          <button
-            className="pl-3"
-            type="submit"
-            id="submitBtn"
-            onClick={handleClick}
-          >
-            Find a game
-          </button>
+          {(ongoingSearch && (
+            <MdClear
+              type="button"
+              size={30}
+              color="white"
+              className="m-3"
+              onClick={clearSearch}
+            />
+          )) || (
+            <FaSearch
+              type="submit"
+              size={30}
+              color="white"
+              className="m-3"
+              onClick={handleClick}
+            />
+          )}
         </form>
       </nav>
     </header>

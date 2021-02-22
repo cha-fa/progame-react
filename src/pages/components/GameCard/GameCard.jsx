@@ -9,13 +9,15 @@ import ios from "images/logos/ios.svg";
 import apple from "images/logos/apple.svg";
 import linux from "images/logos/linux.svg";
 import pc from "images/logos/pc.svg";
+import "./gamecard.scss";
+import DayJS from "react-dayjs";
 
 const GameCard = ({ game }) => {
   const getLogo = (logoName) => {
     switch (logoName) {
       case "PC":
         return pc;
-      case "Playstation":
+      case "PlayStation":
         return playstation;
       case "Xbox":
         return xbox;
@@ -44,16 +46,18 @@ const GameCard = ({ game }) => {
             src={game.background_image}
             alt="Snapshot of the game"
           />
-          <div className="overlay-infos">
-            <p>Release date : {game.released}</p>
-            <p>Genres: {game.genres.forEach((g) => g.name)}</p>
+          <div className="overlay-infos card-img-top">
+            <p>
+              Release date : <DayJS format="DD-MM-YYYY">{game.released}</DayJS>
+            </p>
+
             <p>Rating: {game.rating} /5</p>
             <p>{game.ratings_count} votes</p>
           </div>
         </div>
         <div className="card-body p-0">
           <h4 className="mb-3">
-            <Link className="mt-auto" to={"/games/" + game.slug}>
+            <Link className="mt-auto a-intern" to={"/games/" + game.slug}>
               {game.name}
             </Link>
           </h4>

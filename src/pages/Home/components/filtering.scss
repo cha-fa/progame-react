@@ -1,0 +1,26 @@
+@import "variables";
+
+.Filtering {
+  margin-bottom: 30px;
+  select {
+    @include red-btn;
+    width: 20%;
+    padding: $size-15;
+    margin-right: 20px;
+    @include mobile {
+      width: 100%;
+      font-size: $size-15;
+    }
+    margin-bottom: 10px;
+  }
+
+  p {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  h6 {
+    color: $color-white;
+  }
+}
