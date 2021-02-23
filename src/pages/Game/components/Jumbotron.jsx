@@ -2,7 +2,6 @@ import React from "react";
 import { BsPlayFill } from "react-icons/bs";
 
 const Jumbotron = ({ image, website }) => {
-  console.log("IN JUMBOTRON", image, website);
   return (
     <div className="Jumbotron">
       <div

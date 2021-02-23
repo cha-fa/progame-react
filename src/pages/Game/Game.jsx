@@ -15,9 +15,11 @@ const Game = () => {
   const { data, error, isLoading, get } = useFetch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     get(`/games/${gameSlug}`);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [gameSlug]);
 
   return (
     <div className="Game">
