@@ -1,14 +1,13 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./filtering.scss";
+import useFetch from "hooks/useFetch";
 
 const Filtering = ({ handleFiltering, query }) => {
-  const API_URL = process.env.REACT_APP_API_URL;
-  const [currentPlatforms, setCurrentPlatforms] = useState();
   const sort = useRef();
   const platform = useRef();
   const defaultSort = "-relevance";
-  const defaultPlatform = "1,2,3,4,5,6,7,8,14";
+  let defaultPlatforms = "1,2,3,4,5,6,7,8,14";
   const history = useHistory();
 
   const handleChange = () => {
@@ -21,27 +20,18 @@ const Filtering = ({ handleFiltering, query }) => {
 
   const handleClick = () => {
     sort.current.value = defaultSort;
-    platform.current.value = defaultPlatform;
+    platform.current.value = defaultPlatforms;
     handleFiltering({
       sort: defaultSort,
-      platform: defaultPlatform,
+      platform: defaultPlatforms,
     });
     history.push("/");
   };
 
-  const fetchPlatforms = () => {
-    const ids = [9, 10, 11, 12, 13];
-    fetch(`${API_URL}/platforms/lists/parents`)
-      .then((response) => response.json())
-      .then((response) => {
-        const platforms = response.results.filter(
-          (result) => !ids.includes(result.id)
-        );
-        setCurrentPlatforms(platforms);
-      });
-  };
+  const { data, error, isLoading, get } = useFetch();
+
   useEffect(() => {
-    fetchPlatforms();
+    get(`/platforms/lists/parents`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,20 +56,24 @@ const Filtering = ({ handleFiltering, query }) => {
         name="platforms"
         ref={platform}
         onChange={handleChange}
-        defaultValue={{ value: defaultPlatform, label: "All" }}
+        defaultValue={{ value: defaultPlatforms, label: "All" }}
       >
-        <option value={defaultPlatform}>All</option>
-        {currentPlatforms &&
-          currentPlatforms.map((platform) => (
-            <option key={platform.id} value={platform.id}>
-              {platform.name}
-            </option>
-          ))}
+        <option value={defaultPlatforms}>All</option>
+        {data &&
+          data.results
+            .filter((plat) =>
+              defaultPlatforms.split(",").includes(plat.id.toString())
+            )
+            .map((platform) => (
+              <option key={platform.id} value={platform.id}>
+                {platform.name}
+              </option>
+            ))}
       </select>
 
       {((sort.current && sort.current.value !== defaultSort) ||
         query ||
-        (platform.current && platform.current.value !== defaultPlatform)) && (
+        (platform.current && platform.current.value !== defaultPlatforms)) && (
         <p onClick={handleClick}>Clear filters</p>
       )}
       <h6>{query && `Filtering by ${query.type}: ${query.name}`}</h6>

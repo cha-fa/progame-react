@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import DayJS from "react-dayjs";
 
 const GameDetail = ({ game }) => {
-  const platformIds = [9, 10, 11, 12, 13];
+  const defaultPlatforms = [1, 2, 3, 4, 5, 6, 7, 8, 14];
   return (
     <section className="GameDetail">
       {game && (
@@ -55,7 +55,7 @@ const GameDetail = ({ game }) => {
               <h5>Platforms:</h5>
 
               {game.platforms
-                .filter((plat) => !platformIds.includes(plat.id))
+                .filter((plat) => defaultPlatforms.includes(plat.platform.id))
                 .map((plat) => (
                   <Link
                     className="no-style"

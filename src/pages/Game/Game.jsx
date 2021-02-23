@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import useFetch from "hooks/useFetch";
+
 import { useParams } from "react-router-dom";
 import GameDetail from "./components/GameDetail";
 import Screenshots from "./components/Screenshots";
@@ -11,34 +13,22 @@ import "./game.scss";
 
 const Game = () => {
   const { gameSlug } = useParams();
-  const [currentGame, setCurrentGame] = useState();
-  const API_URL = process.env.REACT_APP_API_URL;
-
-  const fetchGame = () => {
-    fetch(`${API_URL}/games/${gameSlug}`)
-      .then((response) => response.json())
-      .then((response) => {
-        setCurrentGame(response);
-        window.scrollTo(0, 0);
-      });
-  };
+  const { data, error, isLoading, get } = useFetch();
 
   useEffect(() => {
-    fetchGame();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameSlug]);
+    get(`/games/${gameSlug}`);
+  }, []);
 
   return (
     <div className="Game">
-      {currentGame && (
+      {isLoading && "Recherche en cours"}
+      {error && error}
+      {data && (
         <div>
-          <Jumbotron
-            image={currentGame.background_image}
-            website={currentGame.website}
-          />
-          <GameDetail game={currentGame} />
-          <Stores stores={currentGame.stores} />
-          <Trailer clip={currentGame.clip} />
+          <Jumbotron image={data.background_image} website={data.website} />
+          <GameDetail game={data} />
+          <Stores stores={data.stores} />
+          <Trailer clip={data.clip} />
           <Screenshots gameSlug={gameSlug} />
           <YouTube gameSlug={gameSlug} />
           <SimilarGames gameSlug={gameSlug} />

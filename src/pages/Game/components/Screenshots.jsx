@@ -1,22 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import useFetch from "hooks/useFetch";
 
 const Screenshots = ({ gameSlug }) => {
-  const [currentScreenshots, setCurrentScreenshots] = useState();
-  const API_URL = process.env.REACT_APP_API_URL;
-  const fetchScreenshots = () => {
-    fetch(`${API_URL}/games/${gameSlug}/screenshots?page_size=4`)
-      .then((response) => response.json())
-      .then((response) => setCurrentScreenshots(response.results));
-  };
+  const { data, error, isLoading, get } = useFetch();
 
   useEffect(() => {
-    fetchScreenshots();
+    get(`/games/${gameSlug}/screenshots?page_size=4`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameSlug]);
+  }, []);
 
   return (
     <div data-aos="fade-up" className="Screenshots row">
-      {currentScreenshots && (
+      {isLoading && "Recherche en cours"}
+      {error && error}
+      {data && (
         <div className="col">
           <h2>SCREENSHOTS</h2>
           <div
@@ -24,7 +21,7 @@ const Screenshots = ({ gameSlug }) => {
             className="row d-flex justify-content-center"
             id="screenshots"
           >
-            {currentScreenshots.map((screenshot) => (
+            {data.results.map((screenshot) => (
               <img
                 src={screenshot.image}
                 alt="Snapshot of the game"

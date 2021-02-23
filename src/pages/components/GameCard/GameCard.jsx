@@ -5,6 +5,7 @@ import "./gamecard.scss";
 import DayJS from "react-dayjs";
 
 const GameCard = ({ game }) => {
+  const defaultPlatforms = [1, 2, 3, 4, 5, 6, 7, 8, 14];
   const getLogo = (platformName) => {
     let url = require(`images/logos/${platformName
       .split(" ")[0]
@@ -35,16 +36,18 @@ const GameCard = ({ game }) => {
           <div className="card-body p-0">
             <h4 className="mb-3 a-intern">{game.name}</h4>
 
-            {game.parent_platforms.map((plat) => (
-              <>
-                <img
-                  key={plat.platform.id}
-                  src={getLogo(plat.platform.name)}
-                  alt=""
-                  className="logo mx-2"
-                />
-              </>
-            ))}
+            {game.parent_platforms
+              .filter((plat) => defaultPlatforms.includes(plat.platform.id))
+              .map((plat) => (
+                <>
+                  <img
+                    key={plat.platform.id}
+                    src={getLogo(plat.platform.name)}
+                    alt=""
+                    className="logo mx-2"
+                  />
+                </>
+              ))}
           </div>
         </Link>
       </div>

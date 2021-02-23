@@ -1,28 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import DayJS from "react-dayjs";
+import useFetch from "hooks/useFetch";
 
 const YouTube = ({ gameSlug }) => {
-  const [currentYoutube, setCurrentYoutube] = useState();
-  const API_URL = process.env.REACT_APP_API_URL;
-
-  const fetchYoutube = () => {
-    fetch(`${API_URL}/games/${gameSlug}/youtube?page_size=4`)
-      .then((response) => response.json())
-      .then((response) => {
-        response.results.length > 1
-          ? setCurrentYoutube(response.results)
-          : setCurrentYoutube(undefined);
-      });
-  };
+  const { data, error, isLoading, get } = useFetch();
 
   useEffect(() => {
-    fetchYoutube();
+    get(`/games/${gameSlug}/youtube?page_size=4`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameSlug]);
 
   return (
     <div data-aos="fade-up" className="YouTube row">
-      {currentYoutube && (
+      {isLoading && "Recherche en cours"}
+      {error && error}
+      {data && data.results.length > 0 && (
         <div className="col mb-5">
           <h2>YOUTUBE</h2>
           <div id="youtube">
@@ -33,8 +25,7 @@ const YouTube = ({ gameSlug }) => {
                   target="_blank"
                   rel="noreferrer"
                   href={
-                    "https://youtube.com/watch?v=" +
-                    currentYoutube[0].external_id
+                    "https://youtube.com/watch?v=" + data.results[0].external_id
                   }
                 >
                   <iframe
@@ -43,7 +34,7 @@ const YouTube = ({ gameSlug }) => {
                     type="text/html"
                     src={
                       "https://www.youtube.com/embed/" +
-                      currentYoutube[0].external_id
+                      data.results[0].external_id
                     }
                     frameBorder="0"
                   ></iframe>
@@ -55,23 +46,20 @@ const YouTube = ({ gameSlug }) => {
                   target="_blank"
                   rel="noreferrer"
                   href={
-                    "https://youtube.com/watch?v=" +
-                    currentYoutube[0].external_id
+                    "https://youtube.com/watch?v=" + data.results[0].external_id
                   }
                 >
-                  <h3 className="hover-red">{currentYoutube[0].name}</h3>
+                  <h3 className="hover-red">{data.results[0].name}</h3>
                   <p>
-                    {currentYoutube[0].channel_title} -{" "}
-                    <DayJS format="DD-MM-YYYY">
-                      {currentYoutube[0].created}
-                    </DayJS>
+                    {data.results[0].channel_title} -{" "}
+                    <DayJS format="DD-MM-YYYY">{data.results[0].created}</DayJS>
                   </p>
                 </a>
               </div>
             </div>
 
             <div data-aos="fade-up" id="other-videos" className="row">
-              {currentYoutube.slice(1).map((youtube) => (
+              {data.results.slice(1).map((youtube) => (
                 <div className="col-xs-12 col-md-4" key={youtube.id}>
                   <a
                     className="no-style"
