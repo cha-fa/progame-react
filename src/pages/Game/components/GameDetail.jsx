@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DayJS from "react-dayjs";
 
 const GameDetail = ({ game }) => {
+  const platformIds = [9, 10, 11, 12, 13];
   return (
     <section className="GameDetail">
       {game && (
@@ -53,23 +54,25 @@ const GameDetail = ({ game }) => {
             <div className="col-xs-6 col-md-3">
               <h5>Platforms:</h5>
 
-              {game.platforms.map((plat) => (
-                <Link
-                  className="no-style"
-                  key={plat.id}
-                  to={{
-                    pathname: `/`,
-                    search: `platforms=${plat.platform.id}`,
-                    state: {
-                      type: "platform",
-                      name: plat.platform.name,
-                      id: plat.platform.id,
-                    },
-                  }}
-                >
-                  <p className="a-intern">{plat.platform.name}</p>
-                </Link>
-              ))}
+              {game.platforms
+                .filter((plat) => !platformIds.includes(plat.id))
+                .map((plat) => (
+                  <Link
+                    className="no-style"
+                    key={plat.id}
+                    to={{
+                      pathname: `/`,
+                      search: `platforms=${plat.platform.id}`,
+                      state: {
+                        type: "platform",
+                        name: plat.platform.name,
+                        id: plat.platform.id,
+                      },
+                    }}
+                  >
+                    <p className="a-intern">{plat.platform.name}</p>
+                  </Link>
+                ))}
             </div>
             <div className="col-xs-6 col-md-3">
               <h5>Publishers:</h5>

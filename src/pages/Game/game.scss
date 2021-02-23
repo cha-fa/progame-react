@@ -43,6 +43,9 @@
     }
   }
 
+  div {
+    color: $color-white;
+  }
   h5 {
     color: $color-red !important;
   }
@@ -115,5 +118,8 @@
   .Screenshots img {
     width: 50%;
     padding: 10px;
+    @include mobile {
+      width: 100%;
+    }
   }
 }

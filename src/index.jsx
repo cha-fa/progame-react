@@ -36,9 +36,9 @@ const App = () => {
             <Game />
           </Route>
         </Switch>
-        <ScrollUp />
-        <Footer />
       </Container>
+      <ScrollUp />
+      <Footer />
     </Router>
   );
 };
