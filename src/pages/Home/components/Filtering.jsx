@@ -28,7 +28,7 @@ const Filtering = ({ handleFiltering, query }) => {
     history.push("/");
   };
 
-  const { data, error, isLoading, get } = useFetch();
+  const { data, get } = useFetch();
 
   useEffect(() => {
     get(`/platforms/lists/parents`);

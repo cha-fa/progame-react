@@ -114,3 +114,12 @@ p {
   }
   z-index: 0;
 }
+
+.Loading {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+
+  height: 100vh;
+  width: 100%;
+}

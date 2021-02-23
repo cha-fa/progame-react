@@ -9,6 +9,9 @@ h1 {
   @include mobile {
     font-size: $size-30;
   }
+  &:hover {
+    color: darken($color-red, 10%);
+  }
 }
 
 form {

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import useFetch from "hooks/useFetch";
-
 import { useParams } from "react-router-dom";
 import GameDetail from "./components/GameDetail";
 import Screenshots from "./components/Screenshots";
@@ -10,19 +9,20 @@ import Trailer from "./components/Trailer";
 import YouTube from "./components/YouTube";
 import Jumbotron from "./components/Jumbotron";
 import "./game.scss";
-
+import Loading from "pages/components/Loading";
 const Game = () => {
   const { gameSlug } = useParams();
   const { data, error, isLoading, get } = useFetch();
 
   useEffect(() => {
     get(`/games/${gameSlug}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="Game">
-      {isLoading && "Recherche en cours"}
-      {error && error}
+      {isLoading && <Loading />}
+      {error && <h4>{error}</h4>}
       {data && (
         <div>
           <Jumbotron image={data.background_image} website={data.website} />

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import useFetch from "hooks/useFetch";
+import Loading from "pages/components/Loading";
 
 const Screenshots = ({ gameSlug }) => {
   const { data, error, isLoading, get } = useFetch();
@@ -11,8 +12,8 @@ const Screenshots = ({ gameSlug }) => {
 
   return (
     <div data-aos="fade-up" className="Screenshots row">
-      {isLoading && "Recherche en cours"}
-      {error && error}
+      {isLoading && <Loading />}
+      {error && <h4>{error}</h4>}
       {data && (
         <div className="col">
           <h2>SCREENSHOTS</h2>

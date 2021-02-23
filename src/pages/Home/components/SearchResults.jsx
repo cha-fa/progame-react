@@ -1,6 +1,7 @@
 import GameCard from "pages/components/GameCard/GameCard";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useFetch from "hooks/useFetch";
+import Loading from "pages/components/Loading";
 
 const SearchResults = ({ searchKeyword, filter, query }) => {
   const platforms = filter.platform ? filter.platform : "1,2,3,4,5,6,7,8,14";
@@ -11,7 +12,6 @@ const SearchResults = ({ searchKeyword, filter, query }) => {
   };
 
   useEffect(() => {
-    console.log("FIRST RENDERING");
     if (searchKeyword) {
       get(
         `/games?page_size=9&search=${searchKeyword}&parent_platforms=${platforms}&ordering=${filter.sort}`
@@ -27,7 +27,9 @@ const SearchResults = ({ searchKeyword, filter, query }) => {
   }, [searchKeyword, filter]);
 
   return (
-    <div className="row">
+    <div className="SearchResults row">
+      {error && <h4>{error}</h4>}
+      {isLoading && <Loading />}
       {(data &&
         nextData.length < 1 &&
         data.results.map((game) => <GameCard key={game.id} game={game} />)) ||

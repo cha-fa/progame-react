@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import DayJS from "react-dayjs";
 import useFetch from "hooks/useFetch";
+import Loading from "pages/components/Loading";
 
 const YouTube = ({ gameSlug }) => {
   const { data, error, isLoading, get } = useFetch();
@@ -12,8 +13,8 @@ const YouTube = ({ gameSlug }) => {
 
   return (
     <div data-aos="fade-up" className="YouTube row">
-      {isLoading && "Recherche en cours"}
-      {error && error}
+      {isLoading && <Loading />}
+      {error && <h4>{error}</h4>}
       {data && data.results.length > 0 && (
         <div className="col mb-5">
           <h2>YOUTUBE</h2>
