@@ -15,6 +15,7 @@ const useFetch = () => {
     if (!next) {
       path = `${API_URL}${path}`;
     }
+    console.log("PATH IS", path);
     fetch(path)
       .then((response) => {
         if (response.ok) {
