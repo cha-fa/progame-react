@@ -51,6 +51,7 @@ const Filtering = ({ handleFiltering, query }) => {
         <option value="-rating">Average Rating</option>
         <option value="-released">Release Date</option>
       </select>
+
       <select
         id="platforms"
         name="platforms"
