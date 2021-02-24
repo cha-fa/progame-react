@@ -15,7 +15,7 @@ const GameCard = ({ game }) => {
 
   return (
     <div className="GameCard col-xs-12 col-md-4  ">
-      <div data-aos="flip-left" className="game-card">
+      <div data-aos="fade-up" className="game-card">
         <Link className="mt-auto a-intern" to={"/games/" + game.slug}>
           <div className="game-top">
             <img

@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { MdClear } from "react-icons/md";
 import "./header.scss";
 
@@ -8,7 +8,7 @@ const Header = ({ handleSearchInput }) => {
   let history = useHistory();
   const inputRef = useRef();
   const [ongoingSearch, setOngoingSearch] = useState(false);
-
+  const location = useLocation();
   const handleClick = (event) => {
     event.preventDefault();
     history.push("/");
@@ -17,17 +17,22 @@ const Header = ({ handleSearchInput }) => {
   };
 
   const clearSearch = () => {
-    history.push("/");
     handleSearchInput(undefined);
     inputRef.current.value = "";
     setOngoingSearch(false);
   };
 
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      clearSearch();
+    }
+  }, [location.pathname]);
+
   return (
     <header>
       <nav className="mb-5 d-flex justify-content-between align-items-center d-flex row">
         <Link className="no-style" to="/">
-          <h1>GameFinder</h1>
+          <h1 onClick={clearSearch}>GameFinder</h1>
         </Link>
 
         <form

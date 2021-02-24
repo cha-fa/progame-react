@@ -2,22 +2,34 @@
 
 .Filtering {
   margin-bottom: 30px;
-  select {
-    @include red-btn;
-    width: 20%;
-    padding: $size-15;
-    margin-right: 20px;
-    @include mobile {
-      width: 100%;
-      font-size: $size-15;
-    }
-    margin-bottom: 10px;
+
+  form {
+    color: $color-white !important;
+    margin-bottom: 60px;
   }
 
-  p {
-    display: inline-block;
+  .form-group {
+    margin-right: 20px;
+    width: 20%;
+    @include mobile {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+  }
+  .form-control {
+    @include red-btn;
+    height: 100%;
+  }
+
+  .clearFilters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: bold;
+    bottom: 0;
   }
 
   h6 {
