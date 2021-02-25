@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import GameDetail from "./components/GameDetail";
 import Screenshots from "./components/Screenshots";
 import SimilarGames from "./components/SimilarGames";
-import Stores from "./components/Stores";
 import Trailer from "./components/Trailer";
 import YouTube from "./components/YouTube";
 import Jumbotron from "./components/Jumbotron";
@@ -29,7 +28,6 @@ const Game = () => {
         <div>
           <Jumbotron image={data.background_image} website={data.website} />
           <GameDetail game={data} />
-          <Stores stores={data.stores} />
           <Trailer clip={data.clip} />
           <Screenshots gameSlug={gameSlug} />
           <YouTube gameSlug={gameSlug} />

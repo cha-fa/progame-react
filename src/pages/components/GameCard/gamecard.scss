@@ -11,6 +11,8 @@
 }
 
 .game-top {
+  position: relative;
+  cursor: pointer;
   .card-img-top {
     display: block;
     width: 100%;
@@ -19,6 +21,14 @@
     @include mobile {
       height: 30vw;
     }
+  }
+
+  .playBtn {
+    float: left;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    z-index: 1000;
   }
 }
 

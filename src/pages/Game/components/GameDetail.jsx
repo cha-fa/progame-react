@@ -12,9 +12,12 @@ const GameDetail = ({ game }) => {
           <div className="row d-flex align-items-center">
             <div className="col-8">
               <h1 id="title">{game.name}</h1>
+              <h5 className="mb-5">
+                Release date: <DayJS format="DD-MM-YYYY">{game.released}</DayJS>
+              </h5>
             </div>
             <div className="col-4">
-              <p id="rating">{game.rating}/5</p>
+              <p id="rating">Rating: {game.rating}/5</p>
             </div>
           </div>
           <div className="row">
@@ -24,14 +27,7 @@ const GameDetail = ({ game }) => {
           </div>
 
           <div data-aos="fade-up" className="row">
-            <div className="col-xs-6 col-md-3">
-              <h5>Release Date:</h5>
-              <p id="release-date">
-                {" "}
-                <DayJS format="DD-MM-YYYY">{game.released}</DayJS>
-              </p>
-            </div>
-            <div className="col-xs-6 col-md-3">
+            <div className="col-xs-6 col-md-4">
               <h5>Developers:</h5>
               {game.developers.map((dev) => (
                 <Link
@@ -51,7 +47,7 @@ const GameDetail = ({ game }) => {
                 </Link>
               ))}
             </div>
-            <div className="col-xs-6 col-md-3">
+            <div className="col-xs-6 col-md-4">
               <h5>Platforms:</h5>
 
               {game.platforms
@@ -74,7 +70,7 @@ const GameDetail = ({ game }) => {
                   </Link>
                 ))}
             </div>
-            <div className="col-xs-6 col-md-3">
+            <div className="col-xs-6 col-md-4">
               <h5>Publishers:</h5>
               {game.publishers.map((pub) => (
                 <Link
@@ -97,7 +93,7 @@ const GameDetail = ({ game }) => {
           </div>
 
           <div data-aos="fade-up" className="row">
-            <div className="col-xs-12 col-md-6">
+            <div className="col-xs-12 col-md-4">
               <h5>Genres:</h5>
               {game.genres.map((genre) => (
                 <Link
@@ -117,7 +113,7 @@ const GameDetail = ({ game }) => {
                 </Link>
               ))}
             </div>
-            <div className="col-xs-12 col-md-6">
+            <div className="col-xs-12 col-md-4">
               <h5>Tags:</h5>
               {game.tags.slice(0, 10).map((tag) => (
                 <Link
@@ -135,6 +131,21 @@ const GameDetail = ({ game }) => {
                 >
                   <p className="a-intern">{tag.name}</p>
                 </Link>
+              ))}
+            </div>
+            <div className="col-xs-12 col-md-4">
+              <h5>Stores:</h5>
+              {game.stores.map((store) => (
+                <div id="stores" key={store.store.id}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="no-style"
+                    href={store.url}
+                  >
+                    <p className="hover-red">{store.store.name}</p>
+                  </a>
+                </div>
               ))}
             </div>
           </div>
