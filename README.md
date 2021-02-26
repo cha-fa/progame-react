@@ -20,8 +20,12 @@ If you want, you can click on a developer's or publisher's name and find out a l
 You can also click on a genre or a tag to find related games.
 
 ## Visuals
+#### Home page :
+![Homepage preview](https://github.com/cha-fa/progame-react/blob/master/src/images/preview_gifs/homepage.gif?raw=true)  
+  
+ #### Game page:
+![Game page preview](https://github.com/cha-fa/progame-react/blob/master/src/images/preview_gifs/gamepage.gif?raw=true)  
 
-![Homepage preview](https://github.com/cha-fa/progame-react/blob/master/src/images/preview_gifs/homepage.gif?raw=true)
 ## Tools  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
