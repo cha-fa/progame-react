@@ -5,7 +5,7 @@ Visit https://my-game-finder.herokuapp.com/ to find your next favorite video gam
 
 ## Introduction
 
-This app was created with [RAWG.io API](https://api.rawg.io/docs/) during a ReactJS bootcamp at @TheHackingProject.
+This app was created with [RAWG.io API](https://api.rawg.io/docs/) during a ReactJS bootcamp at @TheHackingProject.  
 The purpose was to practice with React Router, Hooks, and Components.
 
 ## Installation
