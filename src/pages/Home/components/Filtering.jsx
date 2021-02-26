@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import "./filtering.scss";
+import "style/filtering.scss";
 import useFetch from "hooks/useFetch";
 import { BsTrash } from "react-icons/bs";
 

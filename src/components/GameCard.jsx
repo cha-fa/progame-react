@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaPlayCircle } from "react-icons/fa";
-import "./gamecard.scss";
+import "style/gamecard.scss";
 import defaultcover from "images/defaultcover.jpg";
 
 const GameCard = ({ game }) => {

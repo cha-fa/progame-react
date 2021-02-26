@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import SearchResults from "pages/Home/components/SearchResults";
-import Filtering from "./components/Filtering";
+import Filtering from "pages/Home/components/Filtering";
 
 const Home = ({ searchKeyword }) => {
   const location = useLocation();

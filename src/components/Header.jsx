@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { MdClear } from "react-icons/md";
-import "./header.scss";
+import "style/header.scss";
 
 const Header = ({ handleSearchInput }) => {
   let history = useHistory();

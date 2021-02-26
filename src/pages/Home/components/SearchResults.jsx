@@ -1,7 +1,7 @@
-import GameCard from "pages/components/GameCard/GameCard";
+import GameCard from "components/GameCard";
 import { useEffect } from "react";
 import useFetch from "hooks/useFetch";
-import Loading from "pages/components/Loading";
+import Loading from "components/Loading";
 
 const SearchResults = ({ searchKeyword, filter, query }) => {
   const platforms = filter.platform ? filter.platform : "1,2,3,4,5,6,7,8,14";

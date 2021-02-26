@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
-import "./components.scss";
+import "style/components.scss";
 
 const ScrollUp = () => {
   const handleClick = () => {

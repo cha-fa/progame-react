@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import DayJS from "react-dayjs";
 import useFetch from "hooks/useFetch";
-import Loading from "pages/components/Loading";
+import Loading from "components/Loading";
 
 const YouTube = ({ gameSlug }) => {
   const { data, error, isLoading, get } = useFetch();

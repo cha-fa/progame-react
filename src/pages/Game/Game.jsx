@@ -7,8 +7,8 @@ import SimilarGames from "./components/SimilarGames";
 import Trailer from "./components/Trailer";
 import YouTube from "./components/YouTube";
 import Jumbotron from "./components/Jumbotron";
-import "./game.scss";
-import Loading from "pages/components/Loading";
+import "style/game.scss";
+import Loading from "components/Loading";
 const Game = () => {
   const { gameSlug } = useParams();
   const { data, error, isLoading, get } = useFetch();

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import GameCard from "pages/components/GameCard/GameCard";
+import GameCard from "components/GameCard";
 import useFetch from "hooks/useFetch";
-import Loading from "pages/components/Loading";
+import Loading from "components/Loading";
 
 const SimilarGames = ({ gameSlug }) => {
   const { data, error, isLoading, get } = useFetch();
