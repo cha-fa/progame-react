@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaPlayCircle } from "react-icons/fa";
 import "./gamecard.scss";
+import defaultcover from "images/defaultcover.jpg";
 
 const GameCard = ({ game }) => {
   let history = useHistory();
@@ -30,7 +31,9 @@ const GameCard = ({ game }) => {
             <div>
               <img
                 className="card-img-top mb-4"
-                src={game.background_image}
+                src={
+                  game.background_image ? game.background_image : defaultcover
+                }
                 alt="Snapshot of the game"
               />
               {game.clip && (
