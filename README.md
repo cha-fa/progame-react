@@ -1,4 +1,4 @@
-# Game Finder
+# Video Game Finder
 
 ![Alt Text](https://media.giphy.com/media/FMapondVtL2Fi/giphy.gif)  
 Visit https://my-game-finder.herokuapp.com/ to find your next favorite video game!  
@@ -18,7 +18,7 @@ Games are by default sorted by relevance, you can sort it by name, date, popular
 You can also search for a game, once on the game page you will find all the game's information.  
 If you want, you can click on a developer's or publisher's name and find out a list of their games.  
 
-
+## Visuals
 
 
 ## Tools  
