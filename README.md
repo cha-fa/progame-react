@@ -17,9 +17,14 @@ Clone this repository, then `npm install` and `npm start`, the app will be runni
 Games are by default sorted by relevance, you can sort it by name, date, popularity and platforms.  
 You can also search for a game, once on the game page you will find all the game's information.  
 If you want, you can click on a developer's or publisher's name and find out a list of their games.  
+You can also click on a genre or a tag to find related games.
 
 ## Visuals
-
+#### Home page :
+![Homepage preview](https://github.com/cha-fa/progame-react/blob/master/src/images/preview_gifs/homepage.gif?raw=true)  
+  
+ #### Game page:
+![Game page preview](https://github.com/cha-fa/progame-react/blob/master/src/images/preview_gifs/gamepage.gif?raw=true)  
 
 ## Tools  
 
